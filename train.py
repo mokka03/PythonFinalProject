@@ -3,7 +3,6 @@ import torch, torchvision
 import time, warnings
 import os
 from torch.optim import optimizer
-from torch.nn.functional import relu
 from matplotlib import pyplot as plt
 from utils import stat_cuda, Timer, VGGRegressionModel
 warnings.filterwarnings("ignore") 
