@@ -5,6 +5,7 @@ We want to classify the pictures of fashion MNIST database at least with 85 % ac
 
 ## System architecture
 We want to implement a VGGnet-like architecture using PyTorch machine learning framework. It contains convolutional, max-pooling and dropout layers.
+[Contribution guidelines for this project](model.png)
 
 ## Results
 
