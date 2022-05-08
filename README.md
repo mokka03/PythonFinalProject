@@ -4,8 +4,12 @@
 We want to classify the pictures of fashion MNIST database at least with 85 % accuracy. Fashion-MNIST is a dataset of [Zalando](https://jobs.zalando.com/en/tech/?gh_src=22377bdd1us)'s article images—consisting of a training set of 60,000 examples and a test set of 10,000 examples. Each example is a 28x28 grayscale image, associated with a label from 10 classes.
 
 ## System architecture
-We want to implement a VGGnet-like architecture using PyTorch machine learning framework. It contains convolutional, max-pooling and dropout layers.
-![Contribution guidelines for this project](model.png)
+We want to implement a VGGnet-like architecture using PyTorch machine learning framework (see on figure below). It contains twa major parts: a convolutional network to gain the features from the images, and a fully connected network to classify the input:
+Convolutional:
+- 2D convolutional layer:
+Input channels: 1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+
+![model](model.png)
 
 ## Results
 

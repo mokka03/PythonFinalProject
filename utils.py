@@ -46,9 +46,10 @@ def get_vgg_layers(config, batch_norm=True):
 class VGGRegressionModel(torch.nn.Module):
     def __init__(self, config):
         super(VGGRegressionModel, self).__init__()
+        # Convolutional layers to gain features
         self.features = get_vgg_layers(config)
 
-        # Fully connected network to classify input after convolutional layers
+        # Fully connected network to classify after convolutional layers
         self.classifier = torch.nn.Sequential(
             torch.nn.Linear(64*7*7, 4096),
             torch.nn.ReLU(inplace = True),
