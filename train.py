@@ -42,7 +42,7 @@ del(images, dataiter, dataloader, batch_size)
 transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(), torchvision.transforms.Normalize(mean, std)])
 dataset = torchvision.datasets.FashionMNIST(root = '.data', train=True, download=True, transform=transform)
 
-# Define batch size
+# Define batches
 batch_size = 64
 dataloader = torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
 dataiter = iter(dataloader)

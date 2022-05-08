@@ -30,7 +30,18 @@ Classifier:
 
 ![model](model.png)
 
+To optimize the model we use the built in cross entropy loss function and Adam optimizer in PyTorch.
+
+## Code
+The project contains two python files, the train.py, and utils.py which contains self defined functions that are used by the train.py file.  Run the train.py file to get the results.
+Ide majd lépésenként le kéne írni, hogy nagy vonalakban mit csinál a kód
+
 ## Results
+We train the network for 10 epochs, and could reach 90.22 % accuracy on test dataset.
+![loss](fashion-MNIST/loss.png)
+
+## Requirements
+(verziók)
 
 ## Contribution of group members
 Benjámin Kispál: Implementation of the network, and the optimization part. Levente Maucha: load and preprocess the data. But we mainly work together, and discuss the upcoming problems.
