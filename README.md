@@ -38,7 +38,7 @@ Ide majd lépésenként le kéne írni, hogy nagy vonalakban mit csinál a kód
 
 ## Results
 We train the network for 10 epochs, and could reach 90.22 % accuracy on test dataset.
-<img src="fashion-MNIST/loss.png" alt="drawing" width="200"/>
+<img src="fashion-MNIST/loss.png" alt="drawing" width="600"/>
 
 ## Requirements
 The code was tested with PyTorch 1.11.0, Python 3.9.9, CUDA 11.3, and up-to-date versions of a few other standard packages, older versions might not work out-of-the-box. It can run on both CPU and GPU (Nvidia), but GPU operation is preferred, CPU is much slower and not tested. GPU requirements are the same as required by PyTorch.
