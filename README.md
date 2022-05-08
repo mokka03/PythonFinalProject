@@ -12,3 +12,4 @@ We want to implement a VGGnet-like architecture using PyTorch machine learning f
 Benjámin Kispál: Implementation of the network, and the optimization part. Levente Maucha: load and preprocess the data. But we mainly work together, and discuss the upcoming problems.
 
 ## References
+[https://pytorch.org/](https://pytorch.org/)
