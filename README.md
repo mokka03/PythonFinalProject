@@ -17,6 +17,15 @@ Features:
 - 2D Max pooling: Kernel size: 2x2, Stride: 2, Padding: 0
 
 Classifier:
+- Linear: In features: 3136, Out features: 4096
+- ReLU
+- Linear: In features: 4096, Out features: 1024
+- ReLU
+- Dropout
+- ReLU
+- Linear: In features: 1024, Out features: 256
+- ReLU
+- Linear: In features: 256, Out features: 10
 
 
 ![model](model.png)
