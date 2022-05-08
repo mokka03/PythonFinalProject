@@ -5,9 +5,17 @@ We want to classify the pictures of fashion MNIST database at least with 85 % ac
 
 ## System architecture
 We want to implement a VGGnet-like architecture using PyTorch machine learning framework (see on figure below). It contains twa major parts: a convolutional network to gain the features from the images, and a fully connected network to classify the input:
-Convolutional:
-- 2D convolutional layer:
-Input channels: 1, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1)
+Features:
+- 2D convolutional layer: Input channels: 1, Output channels 32, Kernel size: 3x3, Stride: 1x1, Padding: 1x1
+- 2D Batch normalization
+- ReLu
+- 2D Max pooling: Kernel size: 2x2, Stride: 2, Padding: 0
+- 2D convolutional layer: Input channels: 32, Output channels 64, Kernel size: 3x3, Stride: 1x1, Padding: 1x1
+- 2D Batch normalization
+- ReLu
+- 2D Max pooling: Kernel size: 2x2, Stride: 2, Padding: 0
+Classifier:
+
 
 ![model](model.png)
 
