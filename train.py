@@ -57,7 +57,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=1e-2)
 criterion = torch.nn.CrossEntropyLoss()
 
 epoch_init = -1
-n_epochs = 2
+n_epochs = 10
 
 '''Load model checkpoint'''
 # Optionally load previously trained model
