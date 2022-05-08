@@ -1,6 +1,7 @@
 import torch
 import time
 
+# Print out the GPU memory usage
 def stat_cuda(msg=''):
     print('GPU memory usage ' + msg + ':')
     print('allocated: %dM (max %dM), cached: %dM (max %dM)'
@@ -9,6 +10,7 @@ def stat_cuda(msg=''):
              torch.cuda.memory_reserved() / 1024 / 1024,
              torch.cuda.max_memory_reserved() / 1024 / 1024))
 
+# Object use to measure training time
 class Timer(object):
     def __init__(self, name=None):
         self.name = name
@@ -21,11 +23,12 @@ class Timer(object):
             print('[%s]' % self.name,)
         print('Elapsed: %s' % (time.time() - self.tstart))
 
+# Function to easily construct VGG models
 def get_vgg_layers(config, batch_norm=True):
-    
     layers = []
     in_channels = 1
     
+    # Write 'M' -> Maxpooling layer or 'i' (integer) -> convolution with output channel number i
     for c in config:
         assert c == 'M' or isinstance(c, int)
         if c == 'M':
@@ -45,6 +48,7 @@ class VGGRegressionModel(torch.nn.Module):
         super(VGGRegressionModel, self).__init__()
         self.features = get_vgg_layers(config)
 
+        # Fully connected network to classify input after convolutional layers
         self.classifier = torch.nn.Sequential(
             torch.nn.Linear(64*7*7, 4096),
             torch.nn.ReLU(inplace = True),

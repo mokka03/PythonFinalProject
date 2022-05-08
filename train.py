@@ -1,6 +1,6 @@
 import numpy as np
 import torch, torchvision
-import time, warnings
+import warnings
 import os
 from torch.optim import optimizer
 from matplotlib import pyplot as plt
@@ -11,10 +11,12 @@ device = torch.device('cuda') # 'cuda' or 'cpu'
 print('Running on', device)
 
 '''Directory'''
+# Create the base directory if not not exists
 basedir = 'fashion-MNIST/'
 if not os.path.isdir(basedir):
     os.makedirs(basedir)
 
+# Set same seed for the random number generator of every module
 SEED = 1234
 np.random.seed(SEED)
 torch.manual_seed(SEED)
@@ -24,24 +26,29 @@ torch.backends.cudnn.deterministic = True
 
 
 '''Set up train dataset, dataloader'''
+# Load the 'Fashion-Mnist' pre-defined dataset
 dataset = torchvision.datasets.FashionMNIST(root = '.data', train=True, download=True, transform=torchvision.transforms.ToTensor())
 batch_size = len(dataset)
 dataloader = torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
 dataiter = iter(dataloader)
 images, _ = dataiter.next()
+
+# Calculate mean and standard deviation of the dataset
 mean, std = images.mean(), images.std()
 del(images, dataiter, dataloader, batch_size)
-# mean, std = 0.2860, 0.3530
+# mean, std = 0.2860, 0.3530    # Set the values manually
 
+# Normalization of the dataset
 transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(), torchvision.transforms.Normalize(mean, std)])
 dataset = torchvision.datasets.FashionMNIST(root = '.data', train=True, download=True, transform=transform)
 
+# Define batch size
 batch_size = 64
 dataloader = torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
 dataiter = iter(dataloader)
 
 '''Define network'''
-custom_config = [32, 'M', 64, 'M']
+custom_config = [32, 'M', 64, 'M']  # Configuration of a dumbed down VGG model
 
 
 '''Define model, optimizer, error function'''
@@ -53,6 +60,7 @@ epoch_init = -1
 n_epochs = 2
 
 '''Load model checkpoint'''
+# Optionally load previously trained model
 if epoch_init>=0:
     checkpoint = torch.load(basedir + 'model_e%d.pt' % (epoch_init))
     epoch = checkpoint['epoch']
@@ -66,8 +74,8 @@ else:
 
 '''Train network'''
 iter_num = int(np.ceil(len(dataset)/batch_size))
-with Timer('training phase'):
-    for epoch in range(epoch_init+1, n_epochs):
+with Timer('training phase'):   # Measure trainng time
+    for epoch in range(epoch_init+1, n_epochs): # Training for n_epochs epochs
         epoch_loss = torch.tensor([])
         for batch_index, (inputs, labels) in enumerate(dataloader):
             optimizer.zero_grad()
@@ -83,6 +91,7 @@ with Timer('training phase'):
         losses.append(epoch_loss.mean())
 
         '''Save model checkpoint'''
+        # Save the trained model after every epoch
         torch.save({
                     'epoch': epoch,
                     'losses': losses,
@@ -90,7 +99,7 @@ with Timer('training phase'):
                     'optimizer_state_dict': optimizer.state_dict()
                     }, basedir + 'model_e%d.pt' % (epoch))
 
-## Plot loss
+# Plot loss
 plt.plot(losses[0:])
 plt.xlabel('Epoch')
 plt.ylabel('MSE Loss')
@@ -98,7 +107,7 @@ plt.savefig(basedir + 'loss.png')
 
 '''Evaluate Network on testset'''
 print('Evaluating on testset')
-## Set up test dataset
+# Set up test dataset
 dataset = torchvision.datasets.FashionMNIST(root = '.data', train=False, download=True, transform=torchvision.transforms.ToTensor())
 batch_size = len(dataset)
 dataloader = torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
@@ -107,6 +116,7 @@ images, _ = dataiter.next()
 mean, std = images.mean(), images.std()
 del(images, dataiter, dataloader, batch_size)
 
+# Normalization of the test set
 transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(), torchvision.transforms.Normalize(mean, std)])
 dataset = torchvision.datasets.FashionMNIST(root = '.data', train=False, download=True, transform=transform)
 
