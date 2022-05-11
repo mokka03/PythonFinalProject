@@ -30,7 +30,7 @@ Classifier:
 
 ![model](model.png)
 
-To optimize the model we use the built in cross entropy loss function and Adam optimizer in PyTorch.
+To optimize the model we use the built in cross entropy loss function and Stochastic Gradient Descent optimizer in PyTorch.
 
 ## Code
 The utils.py contains some utility functions (such as an object that can be used as a context manager to measure time or a funtion that prints the used video memory) and the definition for the class with which we can implement a VGG-like model.
