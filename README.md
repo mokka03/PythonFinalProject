@@ -38,6 +38,7 @@ Ide majd lépésenként le kéne írni, hogy nagy vonalakban mit csinál a kód
 
 ## Results
 We train the network for 10 epochs, and could reach 90.22 % accuracy on test dataset.
+
 <img src="fashion-MNIST/loss.png" width="400"/>
 
 ## Requirements
