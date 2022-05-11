@@ -37,7 +37,7 @@ The utils.py contains some utility functions (such as an object that can be used
 Most of the heavy lifting is done in train.py, which is where the training and testing happens and also where we plot the results. For reproducability we set seeds for all of the modules that use some form of random number generation. Since networks perform better on normalized data, we use pytorch's normalize transformation on our dataset, which needs the mean and standard deviation of the dataset as parameter, so at first we only use our trainset to calculate these parameters and than we get them again with the intended transformations. Using the VGGRegressionModel (which we will use for classification instead of regression) from the utils file, we create a simple model that has 2 convolutions with max-pooling after both of them. The dataset, optimizer and error function we use are all included with the pytorch module. For optimizer we've choosen pytorch's Stochastic Gradient Descent optimizer and for error function we picked cross entropy loss, which is a standard error funciton for classification. Next we implemented everything to do with training: a way to load previous models; the training loop (along with a way to use cuda if thats desired); saving the model after every epoch; and finally the ploting of the loss at every epoch. Last but not least we evaluated the network on the testset (for which we also applied normalizations with the same mean and std values) and calculated the accuracy.
 
 ## Results
-We train the network for 10 epochs, and could reach 90.22 % accuracy on test dataset.
+We train the network for 10 epochs, and could reach 90.22 % accuracy on the test dataset.
 
 <img src="fashion-MNIST/loss.png" width="400"/>
 
