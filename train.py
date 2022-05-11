@@ -102,21 +102,13 @@ with Timer('training phase'):   # Measure trainng time
 # Plot loss
 plt.plot(losses[0:])
 plt.xlabel('Epoch')
-plt.ylabel('MSE Loss')
+plt.ylabel('Cross Entropy Loss')
 plt.savefig(basedir + 'loss.png') 
 
 '''Evaluate Network on testset'''
 print('Evaluating on testset')
-# Set up test dataset
-dataset = torchvision.datasets.FashionMNIST(root = '.data', train=False, download=True, transform=torchvision.transforms.ToTensor())
-batch_size = len(dataset)
-dataloader = torch.utils.data.DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
-dataiter = iter(dataloader)
-images, _ = dataiter.next()
-mean, std = images.mean(), images.std()
-del(images, dataiter, dataloader, batch_size)
 
-# Normalization of the test set
+## Normalization of the test set
 transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(), torchvision.transforms.Normalize(mean, std)])
 dataset = torchvision.datasets.FashionMNIST(root = '.data', train=False, download=True, transform=transform)
 
