@@ -49,3 +49,5 @@ Benjámin Kispál: Implementation of the network, and the optimization part. Lev
 
 ## References
 [https://pytorch.org/](https://pytorch.org/)
+
+[https://viso.ai/deep-learning/vgg-very-deep-convolutional-networks/](https://viso.ai/deep-learning/vgg-very-deep-convolutional-networks/)
